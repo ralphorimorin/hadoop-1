@@ -51,6 +51,7 @@ package org.apache.hadoop.util.bloom;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -236,7 +237,7 @@ implements RemoveScheme {
 
   private int randomRemove() {
     if (rand == null) {
-      rand = new Random();
+      rand = new SecureRandom();
     }
 
     return rand.nextInt(nbHash);

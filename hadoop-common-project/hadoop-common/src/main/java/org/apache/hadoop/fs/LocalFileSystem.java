@@ -21,6 +21,7 @@ package org.apache.hadoop.fs;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
+import java.security.SecureRandom;
 import java.util.Random;
 
 import org.apache.hadoop.classification.InterfaceAudience;
@@ -35,7 +36,7 @@ import org.apache.hadoop.conf.Configuration;
 @InterfaceStability.Stable
 public class LocalFileSystem extends ChecksumFileSystem {
   static final URI NAME = URI.create("file:///");
-  static private Random rand = new Random();
+  static private Random rand = new SecureRandom();
   
   public LocalFileSystem() {
     this(new RawLocalFileSystem());

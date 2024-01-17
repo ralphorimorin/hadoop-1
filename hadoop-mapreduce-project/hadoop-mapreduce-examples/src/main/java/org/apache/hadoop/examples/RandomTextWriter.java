@@ -19,6 +19,7 @@
 package org.apache.hadoop.examples;
 
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -106,7 +107,7 @@ public class RandomTextWriter extends Configured implements Tool {
     private int wordsInKeyRange;
     private int minWordsInValue;
     private int wordsInValueRange;
-    private Random random = new Random();
+    private Random random = new SecureRandom();
     
     /**
      * Save the configuration value that we need to write the data.

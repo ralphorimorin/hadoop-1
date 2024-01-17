@@ -21,6 +21,7 @@ package org.apache.hadoop.examples;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -197,7 +198,7 @@ public class DBCountPageView extends Configured implements Tool {
           "INSERT INTO HAccess(url, referrer, time)" +
           " VALUES (?, ?, ?)");
 
-      Random random = new Random();
+      Random random = new SecureRandom();
 
       int time = random.nextInt(50) + 50;
 

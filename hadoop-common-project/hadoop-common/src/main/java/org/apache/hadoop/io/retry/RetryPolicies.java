@@ -22,6 +22,7 @@ import java.net.ConnectException;
 import java.net.NoRouteToHostException;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -50,7 +51,7 @@ public class RetryPolicies {
   private static ThreadLocal<Random> RANDOM = new ThreadLocal<Random>() {
     @Override
     protected Random initialValue() {
-      return new Random();
+      return new SecureRandom();
     }
   };
   

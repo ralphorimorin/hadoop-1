@@ -19,6 +19,7 @@
 package org.apache.hadoop.hdfs;
 
 import com.google.common.collect.Iterators;
+import java.security.SecureRandom;
 import org.apache.hadoop.classification.InterfaceAudience;
 import org.apache.hadoop.classification.InterfaceStability;
 import org.apache.hadoop.hdfs.inotify.EventBatch;
@@ -63,7 +64,7 @@ public class DFSInotifyEventInputStream {
   /**
    * Used to generate wait times in {@link DFSInotifyEventInputStream#take()}.
    */
-  private Random rng = new Random();
+  private Random rng = new SecureRandom();
 
   private static final int INITIAL_WAIT_MS = 10;
 

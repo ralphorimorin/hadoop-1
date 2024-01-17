@@ -19,6 +19,7 @@
 package org.apache.hadoop.mapred.lib;
 
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -161,7 +162,7 @@ public class InputSampler<K,V> extends
       ArrayList<K> samples = new ArrayList<K>(numSamples);
       int splitsToSample = Math.min(maxSplitsSampled, splits.length);
 
-      Random r = new Random();
+      Random r = new SecureRandom();
       long seed = r.nextLong();
       r.setSeed(seed);
       LOG.debug("seed: " + seed);

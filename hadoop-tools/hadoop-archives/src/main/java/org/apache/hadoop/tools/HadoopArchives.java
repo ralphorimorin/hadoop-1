@@ -24,6 +24,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -485,7 +486,7 @@ public class HadoopArchives implements Tool {
       throw new IOException(ie);
     }
     Path jobDirectory = new Path(stagingArea,
-        NAME+"_"+Integer.toString(new Random().nextInt(Integer.MAX_VALUE), 36));
+        NAME+"_"+Integer.toString(new SecureRandom().nextInt(Integer.MAX_VALUE), 36));
     FsPermission mapredSysPerms = 
       new FsPermission(JobSubmissionFiles.JOB_DIR_PERMISSION);
     FileSystem.mkdirs(jobDirectory.getFileSystem(conf), jobDirectory,

@@ -22,6 +22,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -53,7 +54,7 @@ class S3OutputStream extends OutputStream {
 
   private OutputStream backupStream;
 
-  private Random r = new Random();
+  private Random r = new SecureRandom();
 
   private boolean closed;
 

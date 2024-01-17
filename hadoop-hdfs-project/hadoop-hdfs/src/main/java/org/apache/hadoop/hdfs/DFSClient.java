@@ -17,6 +17,7 @@
  */
 package org.apache.hadoop.hdfs;
 
+import java.security.SecureRandom;
 import static org.apache.hadoop.fs.CommonConfigurationKeysPublic.HADOOP_SECURITY_CRYPTO_CODEC_CLASSES_KEY_PREFIX;
 import static org.apache.hadoop.hdfs.DFSConfigKeys.DFS_BLOCK_SIZE_DEFAULT;
 import static org.apache.hadoop.hdfs.DFSConfigKeys.DFS_BLOCK_SIZE_KEY;
@@ -262,7 +263,7 @@ public class DFSClient implements java.io.Closeable, RemotePeerFactory,
   final ReplaceDatanodeOnFailure dtpReplaceDatanodeOnFailure;
   final FileSystem.Statistics stats;
   private final String authority;
-  private final Random r = new Random();
+  private final Random r = new SecureRandom();
   private SocketAddress[] localInterfaceAddrs;
   private DataEncryptionKey encryptionKey;
   final SaslDataTransferClient saslClient;

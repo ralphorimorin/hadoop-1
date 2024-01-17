@@ -21,6 +21,7 @@ package org.apache.hadoop.yarn.server.nodemanager;
 import java.io.IOException;
 import java.net.ConnectException;
 import java.nio.ByteBuffer;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -100,7 +101,7 @@ public class NodeStatusUpdaterImpl extends AbstractService implements
   /** Keeps track of when the next keep alive request should be sent for an app*/
   private Map<ApplicationId, Long> appTokenKeepAliveMap =
       new HashMap<ApplicationId, Long>();
-  private Random keepAliveDelayRandom = new Random();
+  private Random keepAliveDelayRandom = new SecureRandom();
   // It will be used to track recently stopped containers on node manager, this
   // is to avoid the misleading no-such-container exception messages on NM, when
   // the AM finishes it informs the RM to stop the may-be-already-completed

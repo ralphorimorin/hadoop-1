@@ -18,6 +18,7 @@
  */
 package org.apache.hadoop.tools.rumen;
 
+import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -39,7 +40,7 @@ public abstract class CDFRandomGenerator {
   final Random random;
 
   CDFRandomGenerator(LoggedDiscreteCDF cdf) {
-    this(cdf, new Random());
+    this(cdf, new SecureRandom());
   }
 
   CDFRandomGenerator(LoggedDiscreteCDF cdf, long seed) {

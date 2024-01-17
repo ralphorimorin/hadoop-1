@@ -19,6 +19,7 @@
 package org.apache.hadoop.fs;
 
 import java.io.*;
+import java.security.SecureRandom;
 import java.util.*;
 
 import org.apache.commons.logging.*;
@@ -248,7 +249,7 @@ public class LocalDirAllocator {
       LogFactory.getLog(AllocatorPerContext.class);
 
     private int dirNumLastAccessed;
-    private Random dirIndexRandomizer = new Random();
+    private Random dirIndexRandomizer = new SecureRandom();
     private FileSystem localFS;
     private DF[] dirDF;
     private String contextCfgItemName;

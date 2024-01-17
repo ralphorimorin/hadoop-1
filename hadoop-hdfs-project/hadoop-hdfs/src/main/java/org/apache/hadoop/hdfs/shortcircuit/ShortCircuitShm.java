@@ -20,6 +20,7 @@ package org.apache.hadoop.hdfs.shortcircuit;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.security.SecureRandom;
 import java.util.BitSet;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -85,7 +86,7 @@ public class ShortCircuitShm {
    * Identifies a DfsClientShm.
    */
   public static class ShmId implements Comparable<ShmId> {
-    private static final Random random = new Random();
+    private static final Random random = new SecureRandom();
     private final long hi;
     private final long lo;
 

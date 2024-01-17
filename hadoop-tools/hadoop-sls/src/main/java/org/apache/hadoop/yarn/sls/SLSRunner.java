@@ -21,6 +21,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.security.SecureRandom;
 import java.text.MessageFormat;
 import java.util.Map;
 import java.util.HashMap;
@@ -208,7 +209,7 @@ public class SLSRunner {
       nodeSet.addAll(SLSUtils.parseNodesFromNodeFile(nodeFile));
     }
     // create NM simulators
-    Random random = new Random();
+    Random random = new SecureRandom();
     Set<String> rackSet = new HashSet<String>();
     for (String hostName : nodeSet) {
       // we randomize the heartbeat start time from zero to 1 interval

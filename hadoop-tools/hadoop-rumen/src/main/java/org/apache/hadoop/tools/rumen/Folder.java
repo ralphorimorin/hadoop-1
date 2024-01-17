@@ -21,6 +21,7 @@ package org.apache.hadoop.tools.rumen;
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.security.SecureRandom;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -186,7 +187,7 @@ public class Folder extends Configured implements Tool {
 
       timeDilation = (double) outputDuration / (double) inputCycle;
 
-      random = seeded ? new Random(randomSeed) : new Random();
+      random = seeded ? new Random(randomSeed) : new SecureRandom();
 
       if (debug) {
         randomSeed = random.nextLong();
@@ -289,7 +290,7 @@ public class Folder extends Configured implements Tool {
         // At the top of this loop, skewBuffer has at most
         // skewBufferLength entries.
         while (job != null) {
-          final Random tempNameGenerator = new Random();
+          final Random tempNameGenerator = new SecureRandom();
 
           lastJobSubmitTime = job.getSubmitTime();
 

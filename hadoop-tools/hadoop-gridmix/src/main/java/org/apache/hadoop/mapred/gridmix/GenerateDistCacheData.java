@@ -20,6 +20,7 @@ package org.apache.hadoop.mapred.gridmix;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.security.PrivilegedExceptionAction;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -137,7 +138,7 @@ class GenerateDistCacheData extends GridmixJob {
       extends Mapper<LongWritable, BytesWritable, NullWritable, BytesWritable> {
 
     private BytesWritable val;
-    private final Random r = new Random();
+    private final Random r = new SecureRandom();
     private FileSystem fs;
 
     @Override

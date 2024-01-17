@@ -17,6 +17,7 @@
  */
 package org.apache.hadoop.net;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -673,7 +674,7 @@ public class NetworkTopology {
     return node1.getParent()==node2.getParent();
   }
 
-  private static final Random r = new Random();
+  private static final Random r = new SecureRandom();
 
   @VisibleForTesting
   void setRandomSeed(long seed) {

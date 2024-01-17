@@ -17,6 +17,7 @@
  */
 package org.apache.hadoop.mapred.gridmix;
 
+import java.security.SecureRandom;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.conf.Configuration;
@@ -271,7 +272,7 @@ class LoadJob extends GridmixJob {
     private double ratio;
     private final ArrayList<RecordFactory> reduces =
       new ArrayList<RecordFactory>();
-    private final Random r = new Random();
+    private final Random r = new SecureRandom();
 
     private final GridmixKey key = new GridmixKey();
     private final GridmixRecord val = new GridmixRecord();
@@ -439,7 +440,7 @@ class LoadJob extends GridmixJob {
   public static class LoadReducer
   extends Reducer<GridmixKey,GridmixRecord,NullWritable,GridmixRecord> {
 
-    private final Random r = new Random();
+    private final Random r = new SecureRandom();
     private final GridmixRecord val = new GridmixRecord();
 
     private double acc;
@@ -543,7 +544,7 @@ class LoadJob extends GridmixJob {
   extends RecordReader<NullWritable,GridmixRecord> {
 
     private RecordFactory factory;
-    private final Random r = new Random();
+    private final Random r = new SecureRandom();
     private final GridmixRecord val = new GridmixRecord();
 
     public LoadRecordReader() { }

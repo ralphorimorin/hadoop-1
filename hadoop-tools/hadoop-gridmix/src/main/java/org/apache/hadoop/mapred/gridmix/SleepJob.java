@@ -21,6 +21,7 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 import java.security.PrivilegedExceptionAction;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -58,7 +59,7 @@ public class SleepJob extends GridmixJob {
   private static final ThreadLocal <Random> rand = 
     new ThreadLocal <Random> () {
         @Override protected Random initialValue() {
-            return new Random();
+            return new SecureRandom();
     }
   };
   

@@ -18,6 +18,7 @@
 
 package org.apache.hadoop.tools;
 
+import java.security.SecureRandom;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.conf.Configuration;
@@ -66,7 +67,7 @@ public class DistCp extends Configured implements Tool {
   private static final String PREFIX = "_distcp";
   private static final String WIP_PREFIX = "._WIP_";
   private static final String DISTCP_DEFAULT_XML = "distcp-default.xml";
-  public static final Random rand = new Random();
+  public static final Random rand = new SecureRandom();
 
   private boolean submitted;
   private FileSystem jobFS;

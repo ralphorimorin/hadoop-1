@@ -18,6 +18,7 @@
 
 package org.apache.hadoop.ipc;
 
+import java.security.SecureRandom;
 import static org.apache.hadoop.ipc.RpcConstants.*;
 
 import java.io.BufferedInputStream;
@@ -725,7 +726,7 @@ public class Client {
             } catch (Exception ex) {
               authMethod = saslRpcClient.getAuthMethod();
               if (rand == null) {
-                rand = new Random();
+                rand = new SecureRandom();
               }
               handleSaslConnectionFailure(numRetries++, maxRetriesOnSasl, ex,
                   rand, ticket);

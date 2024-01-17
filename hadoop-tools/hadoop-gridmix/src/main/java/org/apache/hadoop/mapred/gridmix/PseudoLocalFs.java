@@ -21,6 +21,7 @@ package org.apache.hadoop.mapred.gridmix;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.SecureRandom;
 import java.util.Random;
 import java.net.URI;
 
@@ -190,7 +191,7 @@ class PseudoLocalFs extends FileSystem {
   static class RandomInputStream extends InputStream
       implements Seekable, PositionedReadable {
 
-    private final Random r = new Random();
+    private final Random r = new SecureRandom();
     private BytesWritable val = null;
     private int positionInVal = 0;// current position in the buffer 'val'
 

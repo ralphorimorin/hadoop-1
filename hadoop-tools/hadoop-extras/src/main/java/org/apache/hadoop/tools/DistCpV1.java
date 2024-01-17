@@ -25,6 +25,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.HashSet;
@@ -1130,7 +1131,7 @@ public class DistCpV1 implements Tool {
     return jobconf;
   }
 
-  private static final Random RANDOM = new Random();
+  private static final Random RANDOM = new SecureRandom();
   public static String getRandomId() {
     return Integer.toString(RANDOM.nextInt(Integer.MAX_VALUE), 36);
   }

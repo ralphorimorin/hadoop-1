@@ -24,6 +24,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -57,7 +58,7 @@ abstract class DistTool implements org.apache.hadoop.util.Tool {
 
   protected DistTool(Configuration conf) {setConf(conf);}
 
-  private static final Random RANDOM = new Random();
+  private static final Random RANDOM = new SecureRandom();
   protected static String getRandomId() {
     return Integer.toString(RANDOM.nextInt(Integer.MAX_VALUE), 36);
   }

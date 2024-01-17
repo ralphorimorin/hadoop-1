@@ -22,6 +22,7 @@ import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.security.SecureRandom;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -219,7 +220,7 @@ public class Logalyzer {
     Path analysisOutput = null;
     if (outputDirectory.equals("")) {
       analysisOutput =  new Path(inputFilesDirectory, "logalyzer_" + 
-                                 Integer.toString(new Random().nextInt(Integer.MAX_VALUE)));
+                                 Integer.toString(new SecureRandom().nextInt(Integer.MAX_VALUE)));
     } else {
       analysisOutput = new Path(outputDirectory);
     }

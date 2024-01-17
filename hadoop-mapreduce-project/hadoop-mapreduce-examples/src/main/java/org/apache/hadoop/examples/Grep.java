@@ -17,6 +17,7 @@
  */
 package org.apache.hadoop.examples;
 
+import java.security.SecureRandom;
 import java.util.Random;
 
 import org.apache.hadoop.conf.Configuration;
@@ -49,7 +50,7 @@ public class Grep extends Configured implements Tool {
 
     Path tempDir =
       new Path("grep-temp-"+
-          Integer.toString(new Random().nextInt(Integer.MAX_VALUE)));
+          Integer.toString(new SecureRandom().nextInt(Integer.MAX_VALUE)));
 
     Configuration conf = getConf();
     conf.set(RegexMapper.PATTERN, args[2]);

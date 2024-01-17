@@ -22,6 +22,7 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.OutputStream;
 import java.security.PrivilegedExceptionAction;
+import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
@@ -211,7 +212,7 @@ class GenerateData extends GridmixJob {
       extends Mapper<NullWritable,LongWritable,NullWritable,BytesWritable> {
 
     private BytesWritable val;
-    private final Random r = new Random();
+    private final Random r = new SecureRandom();
 
     @Override
     protected void setup(Context context)

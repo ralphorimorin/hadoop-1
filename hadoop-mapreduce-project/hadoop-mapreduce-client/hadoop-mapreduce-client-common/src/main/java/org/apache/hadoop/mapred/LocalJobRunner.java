@@ -24,6 +24,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -89,7 +90,7 @@ public class LocalJobRunner implements ClientProtocol {
   private JobConf conf;
   private AtomicInteger map_tasks = new AtomicInteger(0);
   private AtomicInteger reduce_tasks = new AtomicInteger(0);
-  final Random rand = new Random();
+  final Random rand = new SecureRandom();
   
   private LocalJobRunnerMetrics myMetrics = null;
 

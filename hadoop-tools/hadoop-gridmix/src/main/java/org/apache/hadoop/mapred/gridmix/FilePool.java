@@ -18,6 +18,7 @@
 package org.apache.hadoop.mapred.gridmix;
 
 import java.io.IOException;
+import java.security.SecureRandom;
 
 import java.util.Arrays;
 import java.util.ArrayList;
@@ -119,7 +120,7 @@ class FilePool {
 
   static abstract class Node {
 
-    protected final static Random rand = new Random();
+    protected final static Random rand = new SecureRandom();
 
     /**
      * Total size of files and directories under the current node.

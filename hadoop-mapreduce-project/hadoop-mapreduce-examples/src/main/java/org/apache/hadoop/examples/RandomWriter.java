@@ -19,6 +19,7 @@
 package org.apache.hadoop.examples;
 
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -171,7 +172,7 @@ public class RandomWriter extends Configured implements Tool {
     private int keySizeRange;
     private int minValueSize;
     private int valueSizeRange;
-    private Random random = new Random();
+    private Random random = new SecureRandom();
     private BytesWritable randomKey = new BytesWritable();
     private BytesWritable randomValue = new BytesWritable();
     

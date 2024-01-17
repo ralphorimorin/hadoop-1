@@ -19,6 +19,7 @@
 package org.apache.hadoop.mapreduce.lib.partition;
 
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -198,7 +199,7 @@ public class InputSampler<K,V> extends Configured implements Tool  {
       ArrayList<K> samples = new ArrayList<K>(numSamples);
       int splitsToSample = Math.min(maxSplitsSampled, splits.size());
 
-      Random r = new Random();
+      Random r = new SecureRandom();
       long seed = r.nextLong();
       r.setSeed(seed);
       LOG.debug("seed: " + seed);

@@ -21,6 +21,7 @@ package org.apache.hadoop.examples;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.security.SecureRandom;
 import java.util.Random;
 
 import org.apache.hadoop.conf.Configuration;
@@ -345,7 +346,7 @@ public class QuasiMonteCarlo extends Configured implements Tool {
     final int nMaps = Integer.parseInt(args[0]);
     final long nSamples = Long.parseLong(args[1]);
     long now = System.currentTimeMillis();
-    int rand = new Random().nextInt(Integer.MAX_VALUE);
+    int rand = new SecureRandom().nextInt(Integer.MAX_VALUE);
     final Path tmpDir = new Path(TMP_DIR_PREFIX + "_" + now + "_" + rand);
         
     System.out.println("Number of Maps  = " + nMaps);

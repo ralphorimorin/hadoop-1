@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.URI;
 import java.net.UnknownHostException;
+import java.security.SecureRandom;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -76,7 +77,7 @@ public class ShuffleSchedulerImpl<K,V> implements ShuffleScheduler<K,V> {
   private Set<TaskAttemptID> obsoleteMaps = new HashSet<TaskAttemptID>();
 
   private final TaskAttemptID reduceId;
-  private final Random random = new Random();
+  private final Random random = new SecureRandom();
   private final DelayQueue<Penalty> penalties = new DelayQueue<Penalty>();
   private final Referee referee = new Referee();
   private final Map<TaskAttemptID,IntWritable> failureCounts =
