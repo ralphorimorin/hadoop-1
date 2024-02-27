@@ -17,6 +17,7 @@
  */
 package org.apache.hadoop.yarn.sls.scheduler;
 
+import java.nio.file.Files;
 import org.apache.hadoop.classification.InterfaceAudience.Private;
 import org.apache.hadoop.classification.InterfaceStability.Unstable;
 import org.apache.hadoop.util.ShutdownHookManager;
@@ -490,8 +491,7 @@ public class SLSCapacityScheduler extends CapacityScheduler implements
             TimeUnit.MILLISECONDS);
 
     // application running information
-    jobRuntimeLogBW = new BufferedWriter(
-            new FileWriter(metricsOutputDir + "/jobruntime.csv"));
+    jobRuntimeLogBW = Files.newBufferedWriter(metricsOutputDir + "/jobruntime.csv".toPath());
     jobRuntimeLogBW.write("JobID,real_start_time,real_end_time," +
             "simulate_start_time,simulate_end_time" + EOL);
     jobRuntimeLogBW.flush();
@@ -695,8 +695,7 @@ public class SLSCapacityScheduler extends CapacityScheduler implements
     private boolean firstLine = true;
     public MetricsLogRunnable() {
       try {
-        metricsLogBW = new BufferedWriter(
-                new FileWriter(metricsOutputDir + "/realtimetrack.json"));
+        metricsLogBW = Files.newBufferedWriter(metricsOutputDir + "/realtimetrack.json".toPath());
         metricsLogBW.write("[");
       } catch (IOException e) {
         e.printStackTrace();

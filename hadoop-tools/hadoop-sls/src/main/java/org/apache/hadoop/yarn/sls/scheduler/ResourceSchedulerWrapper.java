@@ -21,6 +21,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -487,8 +488,7 @@ final public class ResourceSchedulerWrapper
             TimeUnit.MILLISECONDS);
 
     // application running information
-    jobRuntimeLogBW = new BufferedWriter(
-            new FileWriter(metricsOutputDir + "/jobruntime.csv"));
+    jobRuntimeLogBW = Files.newBufferedWriter(metricsOutputDir + "/jobruntime.csv".toPath());
     jobRuntimeLogBW.write("JobID,real_start_time,real_end_time," +
             "simulate_start_time,simulate_end_time" + EOL);
     jobRuntimeLogBW.flush();
@@ -692,8 +692,7 @@ final public class ResourceSchedulerWrapper
     private boolean firstLine = true;
     public MetricsLogRunnable() {
       try {
-        metricsLogBW = new BufferedWriter(
-                new FileWriter(metricsOutputDir + "/realtimetrack.json"));
+        metricsLogBW = Files.newBufferedWriter(metricsOutputDir + "/realtimetrack.json".toPath());
         metricsLogBW.write("[");
       } catch (IOException e) {
         e.printStackTrace();
