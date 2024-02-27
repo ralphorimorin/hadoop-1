@@ -18,6 +18,7 @@
 
 package org.apache.hadoop.yarn.util;
 
+import io.github.pixee.security.BoundedLineReader;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -162,7 +163,7 @@ public class LinuxResourceCalculatorPlugin extends ResourceCalculatorPlugin {
     Matcher mat = null;
 
     try {
-      String str = in.readLine();
+      String str = BoundedLineReader.readLine(in, 5_000_000);
       while (str != null) {
         mat = PROCFS_MEMFILE_FORMAT.matcher(str);
         if (mat.find()) {
@@ -178,7 +179,7 @@ public class LinuxResourceCalculatorPlugin extends ResourceCalculatorPlugin {
             inactiveSize = Long.parseLong(mat.group(2));
           }
         }
-        str = in.readLine();
+        str = BoundedLineReader.readLine(in, 5_000_000);
       }
     } catch (IOException io) {
       LOG.warn("Error reading the stream " + io);
@@ -221,7 +222,7 @@ public class LinuxResourceCalculatorPlugin extends ResourceCalculatorPlugin {
     Matcher mat = null;
     try {
       numProcessors = 0;
-      String str = in.readLine();
+      String str = BoundedLineReader.readLine(in, 5_000_000);
       while (str != null) {
         mat = PROCESSOR_FORMAT.matcher(str);
         if (mat.find()) {
@@ -231,7 +232,7 @@ public class LinuxResourceCalculatorPlugin extends ResourceCalculatorPlugin {
         if (mat.find()) {
           cpuFrequency = (long)(Double.parseDouble(mat.group(1)) * 1000); // kHz
         }
-        str = in.readLine();
+        str = BoundedLineReader.readLine(in, 5_000_000);
       }
     } catch (IOException io) {
       LOG.warn("Error reading the stream " + io);
@@ -269,7 +270,7 @@ public class LinuxResourceCalculatorPlugin extends ResourceCalculatorPlugin {
 
     Matcher mat = null;
     try {
-      String str = in.readLine();
+      String str = BoundedLineReader.readLine(in, 5_000_000);
       while (str != null) {
         mat = CPU_TIME_FORMAT.matcher(str);
         if (mat.find()) {
@@ -279,7 +280,7 @@ public class LinuxResourceCalculatorPlugin extends ResourceCalculatorPlugin {
           cumulativeCpuTime = uTime + nTime + sTime; // milliseconds
           break;
         }
-        str = in.readLine();
+        str = BoundedLineReader.readLine(in, 5_000_000);
       }
       cumulativeCpuTime *= jiffyLengthInMillis;
     } catch (IOException io) {

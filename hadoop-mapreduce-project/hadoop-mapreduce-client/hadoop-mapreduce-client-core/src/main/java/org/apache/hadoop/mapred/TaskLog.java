@@ -18,6 +18,7 @@
 
 package org.apache.hadoop.mapred;
 
+import io.github.pixee.security.BoundedLineReader;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -123,7 +124,7 @@ public class TaskLog {
     LogFileDetail l = new LogFileDetail();
     String str = null;
     try {
-      str = fis.readLine();
+      str = BoundedLineReader.readLine(fis, 5_000_000);
       if (str == null) { // the file doesn't have anything
         throw new IOException("Index file for the log of " + taskid
             + " doesn't exist.");
@@ -140,7 +141,7 @@ public class TaskLog {
         fis.close();
         return l;
       }
-      str = fis.readLine();
+      str = BoundedLineReader.readLine(fis, 5_000_000);
       while (str != null) {
         // look for the exact line containing the logname
         if (str.contains(filter.toString())) {
@@ -150,7 +151,7 @@ public class TaskLog {
           l.length = Long.parseLong(startAndLen[1]);
           break;
         }
-        str = fis.readLine();
+        str = BoundedLineReader.readLine(fis, 5_000_000);
       }
       fis.close();
       fis = null;
