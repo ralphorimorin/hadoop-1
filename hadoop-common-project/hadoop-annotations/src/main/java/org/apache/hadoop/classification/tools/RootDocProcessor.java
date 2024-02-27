@@ -234,7 +234,9 @@ class RootDocProcessor {
 
     private Object unwrap(Object proxy) {
       if (proxy instanceof Proxy)
-	return ((ExcludeHandler) Proxy.getInvocationHandler(proxy)).target;
+	{
+	    return ((ExcludeHandler) Proxy.getInvocationHandler(proxy)).target;
+	}
       return proxy;
     }
       
