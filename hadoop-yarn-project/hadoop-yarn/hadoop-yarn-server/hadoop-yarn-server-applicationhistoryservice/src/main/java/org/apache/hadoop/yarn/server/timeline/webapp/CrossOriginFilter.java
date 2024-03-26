@@ -18,6 +18,7 @@
 
 package org.apache.hadoop.yarn.server.timeline.webapp;
 
+import io.github.pixee.security.Newlines;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -125,11 +126,11 @@ public class CrossOriginFilter implements Filter {
       return;
     }
 
-    res.setHeader(ACCESS_CONTROL_ALLOW_ORIGIN, originsList);
-    res.setHeader(ACCESS_CONTROL_ALLOW_CREDENTIALS, Boolean.TRUE.toString());
-    res.setHeader(ACCESS_CONTROL_ALLOW_METHODS, getAllowedMethodsHeader());
-    res.setHeader(ACCESS_CONTROL_ALLOW_HEADERS, getAllowedHeadersHeader());
-    res.setHeader(ACCESS_CONTROL_MAX_AGE, maxAge);
+    res.setHeader(ACCESS_CONTROL_ALLOW_ORIGIN, Newlines.stripAll(originsList));
+    res.setHeader(ACCESS_CONTROL_ALLOW_CREDENTIALS, Newlines.stripAll(Boolean.TRUE.toString()));
+    res.setHeader(ACCESS_CONTROL_ALLOW_METHODS, Newlines.stripAll(getAllowedMethodsHeader()));
+    res.setHeader(ACCESS_CONTROL_ALLOW_HEADERS, Newlines.stripAll(getAllowedHeadersHeader()));
+    res.setHeader(ACCESS_CONTROL_MAX_AGE, Newlines.stripAll(maxAge));
   }
 
   @VisibleForTesting
